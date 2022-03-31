@@ -13,13 +13,14 @@ function App() {
     const task_2: Array<TaskType> = [
         {id: 0, title: 'Rock', isDone: true},
         {id: 1, title: 'DubStep', isDone: true},
-        {id: 2, title: 'Chillout', isDone: false}
+        {id: 2, title: 'Chillout', isDone: false},
+        {id: 3, title: 'Pop', isDone: true}
     ]
     return (
         <div className="App">
             <Todolist
                 title="What to learn 1?"
-                task={task_1}/>
+                task={task_1} />
             <Todolist
                 title="Songs"
                 task={task_2}/>
