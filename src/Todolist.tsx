@@ -58,10 +58,13 @@ export const Todolist: FC<PropsType> = (props: PropsType) => {
             const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => props.changeTaskStatus(el.id, e.currentTarget.checked)
             const taskClasses = el.isDone ? 'is-done' : ''
             return (
-                <li key={el.id}><input type="checkbox" checked={el.isDone} onChange={onChangeStatus}/>
+                <li key={el.id}>
+                  <div className='listItems'>
+                      <input type="checkbox" checked={el.isDone} onChange={onChangeStatus}/>
                     <span className={taskClasses}>{el.title}</span>
                     <button onClick={removeTask}>Х</button>
-                </li>)
+                  </div>
+                  </li>)
         }) : <p>Нет задач</p>
 
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -75,10 +78,10 @@ export const Todolist: FC<PropsType> = (props: PropsType) => {
         return () => props.changeFilter(filter)
     }
 
-    const allButtonClass = props.filter === 'all' ? 'active-filter' : ''
-    const activeButtonClass = props.filter === 'active' ? 'active-filter' : ''
-    const comletedButtonClass = props.filter === 'comleted' ? 'active-filter' : ''
-    const inputErrorClass = error ? 'error' : 'input'
+    const allButtonClass: string = props.filter === 'all' ? 'active-filter filter' : 'filter'
+    const activeButtonClass: string = props.filter === 'active' ? 'active-filter filter' : 'filter'
+    const comletedButtonClass: string = props.filter === 'comleted' ? 'active-filter filter' : 'filter'
+    const inputErrorClass: string = error ? 'error' : 'input'
 
     return (
         <div>
@@ -93,9 +96,7 @@ export const Todolist: FC<PropsType> = (props: PropsType) => {
                 <button onClick={onClickAddTask}>+</button>
                 {error && <div className="errorText">Title is error!!!</div>}
             </div>
-            <ul>
-                {taskListItems}
-            </ul>
+
             <div>
                 <button
                     className={allButtonClass}
@@ -111,6 +112,9 @@ export const Todolist: FC<PropsType> = (props: PropsType) => {
                     className={comletedButtonClass}
                     onClick={onClickAll('comleted')}>Completed
                 </button>
+                <ul>
+                    {taskListItems}
+                </ul>
             </div>
         </div>
     );

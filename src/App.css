@@ -1,10 +1,21 @@
+ul {
+  padding: 15px;
+}
+
+
 .App {
-  padding: 30px;
   display: flex;
+  padding: 30px;
+  justify-content: center;
 }
 
 .App > div {
   margin-right: 50px;
+}
+
+.filter {
+  margin: 5px;
+  border-radius: 5px;
 }
 
 .active-filter {
@@ -12,17 +23,14 @@
 }
 
 .is-done {
-  opacity: 0.6;
+  opacity: 0.5;
   font-weight: bold;
 }
 
-
 .error {
-
   border: 2px solid red;
   outline: none;
   border-radius: 5px;
-
   color: red;
 }
 
@@ -36,4 +44,11 @@
   color: red;
   font-size: 18px;
   font-weight: bold;
+}
+
+.listItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
