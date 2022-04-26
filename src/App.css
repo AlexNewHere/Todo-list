@@ -1,54 +1,24 @@
-ul {
-  padding: 15px;
-}
-
-
 .App {
-  display: flex;
   padding: 30px;
-  justify-content: center;
+  display: flex;
 }
 
 .App > div {
   margin-right: 50px;
 }
 
-.filter {
-  margin: 5px;
-  border-radius: 5px;
+.error {
+  border: red 1px solid;
+}
+
+.error-message {
+  color: red;
 }
 
 .active-filter {
-  background-color: aqua;
+  background-color: aquamarine;
 }
 
 .is-done {
   opacity: 0.5;
-  font-weight: bold;
-}
-
-.error {
-  border: 2px solid red;
-  outline: none;
-  border-radius: 5px;
-  color: red;
-}
-
-.input {
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-}
-
-.errorText {
-  color: red;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.listItems {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
 }
