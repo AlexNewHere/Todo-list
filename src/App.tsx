@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
-import {TaskType, Todolist} from './Todolist';
+import {Todolist} from './Todolist';
 import {v1} from 'uuid';
+import {FullInput} from './Components/FullInput';
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
@@ -38,6 +39,16 @@ function App() {
         ]
     });
 
+    const editTodoList = (todolistId: string, newTitle: string) => {
+        setTodolists(todoLists.map(el=>el.id=== todolistId ? {...el, title: newTitle} : el))
+    }
+
+    const addTodoList = (title: string) => {
+        let newId = v1();
+        setTodolists([{id: newId, title: title, filter: 'all'}, ...todoLists])
+        setTasks({...tasks, [newId]: []})
+    }
+
     const removeTodolist = (todolistId: string) => {
         setTodolists(todoLists.filter(tl => tl.id !== todolistId))
         delete tasks[todolistId];
@@ -59,18 +70,23 @@ function App() {
     function changeFilter(todolistId: string, value: FilterValuesType) {
         setTodolists(todoLists.map(el => (el.id === todolistId) ? {...el, filter: value} : el))
     }
+    const editTask = (todolistId: string, taskId: string, newTitle: string) => {
+        setTasks( {...tasks, [todolistId]: tasks[todolistId].map(el=>el.id===taskId? {...el, title: newTitle}: el)})
+    }
 
     return (
+
         <div className="App">
+            <FullInput callback={addTodoList}/>
             {todoLists.map((el) => {
 
                 let tasksForTodolist = tasks[el.id];
 
                 if (el.filter === 'active') {
-                    tasksForTodolist = tasks[el.id].filter(t => t.isDone === false);
+                    tasksForTodolist = tasks[el.id].filter(t => !t.isDone);
                 }
                 if (el.filter === 'completed') {
-                    tasksForTodolist = tasks[el.id].filter(t => t.isDone === true);
+                    tasksForTodolist = tasks[el.id].filter(t => t.isDone);
                 }
 
                 return (
@@ -85,6 +101,8 @@ function App() {
                         changeTaskStatus={changeStatus}
                         filter={el.filter}
                         removeTodolist={removeTodolist}
+                        editTodoList={editTodoList}
+                        editTask={editTask}
                     />
                 )
             })
