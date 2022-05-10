@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from './App';
 import {FullInput} from './Components/FullInput';
 import {EditableSpan} from './Components/EditableSapn';
-import {Button, Checkbox, IconButton} from '@mui/material';
+import {Button, Checkbox, IconButton, Paper} from '@mui/material';
 import {Delete} from '@mui/icons-material';
 
 export type TaskType = {
@@ -65,12 +65,12 @@ export function Todolist(props: PropsType) {
             <Button
                 color={props.filter === 'active' ? 'error' : 'secondary'}
                 variant={props.filter === 'active' ? 'contained' : 'outlined'}
-                    onClick={onActiveClickHandler}>Active
+                onClick={onActiveClickHandler}>Active
             </Button>
             <Button
                 color={props.filter === 'completed' ? 'success' : 'secondary'}
                 variant={props.filter === 'completed' ? 'contained' : 'outlined'}
-                    onClick={onCompletedClickHandler}>Completed
+                onClick={onCompletedClickHandler}>Completed
             </Button>
         </div>
         <div>
@@ -81,13 +81,16 @@ export function Todolist(props: PropsType) {
                         props.changeTaskStatus(props.todolistId, t.id, e.currentTarget.checked);
                     }
 
-                    return <div key={t.id} >
-                        <Checkbox color="success"
-                                  onChange={onChangeHandler}
-                                  checked={t.isDone}/>
+                    return <Paper elevation={2} style={{marginTop: '7px'}}>
+                    <div key={t.id} style={t.isDone? {opacity: '0.5'}: {opacity: '1'}}>
+                        <Checkbox
+                            color="success"
+                            onChange={onChangeHandler}
+                            checked={t.isDone}/>
                         <EditableSpan title={t.title} callback={(title) => editTaskHandler(t.id, title)}/>
                         <IconButton onClick={onClickHandler}><Delete/></IconButton>
-                    </div>
+                        </div>
+                    </Paper>
                 })
             }
         </div>

@@ -33,6 +33,8 @@ export const FullInput = (props: FullInputType) => {
     return (
         <div>
             <TextField
+                style={{paddingBottom: '10px'}}
+                size={'small'}
                 id="outlined-basic"
                 label={!error? "Enter text": `${error}`}
                 variant="outlined"
@@ -41,7 +43,7 @@ export const FullInput = (props: FullInputType) => {
                 onKeyPress={onKeyPressHandler}
                 error={!!error}
             />
-            <Button variant={'contained'} onClick={addTask}><Add/></Button>
+            <Button variant={'contained'} style={{minWidth: '25px', height: '35px'}} onClick={addTask}><Add/></Button>
         </div>
     );
 };
