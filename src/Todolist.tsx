@@ -81,15 +81,19 @@ export function Todolist(props: PropsType) {
                         props.changeTaskStatus(props.todolistId, t.id, e.currentTarget.checked);
                     }
 
-                    return <Paper elevation={2} style={{marginTop: '7px'}}>
-                    <div key={t.id} style={t.isDone? {opacity: '0.5'}: {opacity: '1'}}>
+                    return <Paper elevation={2} key={t.id}
+                                  sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '7px',
+                                      ':hover': {cursor: 'pointer', backgroundColor: 'rgba(205,250,198,0.65)'}}}
+                                  style={t.isDone?
+                                      {backgroundColor: 'rgba(205,250,198,0.65)'}:
+                                      {color: 'black'}}>
+
                         <Checkbox
                             color="success"
                             onChange={onChangeHandler}
                             checked={t.isDone}/>
                         <EditableSpan title={t.title} callback={(title) => editTaskHandler(t.id, title)}/>
                         <IconButton onClick={onClickHandler}><Delete/></IconButton>
-                        </div>
                     </Paper>
                 })
             }
