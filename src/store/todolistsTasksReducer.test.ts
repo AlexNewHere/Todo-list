@@ -30,7 +30,7 @@ test('ids should be equals', () => {
     const endTodolistsState = todolistsReducer(startTodolistsState, action)
 
     const keys = Object.keys(endTasksState)
-    const idFromTasks = keys[0]
+    const idFromTasks = keys[2]
     const idFromTodolists = endTodolistsState[0].id
 
     expect(idFromTasks).toBe(action.payload.todolistId)

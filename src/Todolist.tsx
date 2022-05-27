@@ -46,7 +46,8 @@ export function Todolist(props: PropsType) {
         props.editTask(props.todolistId, id, title);
     }
 
-    return <div>
+    return (
+        <div>
         <h3>
             <EditableSpan title={props.title} callback={changeTodoTitle}/>
             <IconButton onClick={removeTodolistHandler}><Delete/></IconButton>
@@ -75,6 +76,7 @@ export function Todolist(props: PropsType) {
         </div>
         <div>
             {
+
                 props.tasks.map(t => {
                     const onClickHandler = () => props.removeTask(props.todolistId, t.id)
                     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -99,5 +101,5 @@ export function Todolist(props: PropsType) {
             }
         </div>
 
-    </div>
+    </div>)
 }
