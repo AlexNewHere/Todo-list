@@ -10,7 +10,7 @@ import {
     AddTodolistAC,
     ChangeFilterAC,
     ChangeTitleAC,
-    RemoveTodolistAC,
+    RemoveTodolistAC, TodolistAC,
     todolistsReducer
 } from './store/todolistsReducer';
 import {AddTaskAC, ChangeTaskStatusAC, ChangeTaskTitleAC, RemoveTaskAC, tasksReducer} from './store/tasksReducer';

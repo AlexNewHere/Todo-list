@@ -16,7 +16,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './store/state/store';
 import {Dispatch} from 'redux';
 
-
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
 export type TasksStateType = {
@@ -31,9 +30,9 @@ export type TaskStateType = {
 
 function AppWithRedux() {
 
- const tasks = useSelector<AppRootStateType, TaskStateType>(state => state.tasks)
- const todoLists = useSelector<AppRootStateType, Array<TasksStateType>>(state => state.todoLists)
-const dispatch = useDispatch<Dispatch>()
+    const tasks = useSelector<AppRootStateType, TaskStateType>(state => state.tasks)
+    const todoLists = useSelector<AppRootStateType, Array<TasksStateType>>(state => state.todoLists)
+    const dispatch = useDispatch<Dispatch>()
     const editTodoList = (todolistId: string, newTitle: string) => {
         dispatch(ChangeTitleAC(todolistId, newTitle))
     }
@@ -108,7 +107,6 @@ const dispatch = useDispatch<Dispatch>()
                             <Grid item key={el.id}>
                                 <Paper elevation={3} style={{padding: '15px'}}>
                                     <Todolist
-
                                         todolistId={el.id}
                                         title={el.title}
                                         tasks={tasksForTodolist}
