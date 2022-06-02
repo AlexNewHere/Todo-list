@@ -1,6 +1,6 @@
 import React, {useReducer} from 'react';
 import './App.css';
-import {TaskType, Todolist} from './Todolist';
+import {TaskType} from './Todolist';
 import {v1} from 'uuid';
 import {FullInput} from './Components/FullInput';
 import {AppBar, Button, Grid, IconButton, Paper, Toolbar, Typography} from '@mui/material';
@@ -129,20 +129,20 @@ function AppWithReducers() {
                         return (
                             <Grid item>
                                 <Paper elevation={3} style={{padding: '15px'}}>
-                                    <Todolist
-                                        key={el.id}
-                                        todolistId={el.id}
-                                        title={el.title}
-                                        tasks={tasksForTodolist}
-                                        removeTask={removeTask}
-                                        changeFilter={changeFilter}
-                                        addTask={addTask}
-                                        changeTaskStatus={changeStatus}
-                                        filter={el.filter}
-                                        removeTodolist={removeTodolist}
-                                        editTodoList={editTodoList}
-                                        editTask={editTask}
-                                    />
+                                    {/*<Todolist*/}
+                                    {/*    // key={el.id}*/}
+                                    {/*    // // todolistId={el.id}*/}
+                                    {/*    // // title={el.title}*/}
+                                    {/*    // tasks={tasksForTodolist}*/}
+                                    {/*    // removeTask={removeTask}*/}
+                                    {/*    // changeFilter={changeFilter}*/}
+                                    {/*    // addTask={addTask}*/}
+                                    {/*    // changeTaskStatus={changeStatus}*/}
+                                    {/*    // filter={el.filter}*/}
+                                    {/*    // removeTodolist={removeTodolist}*/}
+                                    {/*    // editTodoList={editTodoList}*/}
+                                    {/*    // editTask={editTask}*/}
+                                    {/*/>*/}
                                 </Paper>
                             </Grid>
                         )
