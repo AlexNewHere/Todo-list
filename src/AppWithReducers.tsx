@@ -10,20 +10,17 @@ import {
     AddTodolistAC,
     ChangeFilterAC,
     ChangeTitleAC,
-    RemoveTodolistAC, TodolistAC,
+    RemoveTodolistAC,
     todolistsReducer
 } from './store/todolistsReducer';
 import {AddTaskAC, ChangeTaskStatusAC, ChangeTaskTitleAC, RemoveTaskAC, tasksReducer} from './store/tasksReducer';
 
-
 export type FilterValuesType = 'all' | 'active' | 'completed';
-
 export type TasksStateType = {
     id: string
     title: string
     filter: FilterValuesType
 }
-
 export type TaskStateType = {
     [key: string]: Array<TaskType>
 }

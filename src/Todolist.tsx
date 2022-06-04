@@ -16,7 +16,6 @@ export type TaskType = {
     title: string
     isDone: boolean
 }
-
 type PropsType = {
     todoLists: TasksToDoType
 }
@@ -24,7 +23,6 @@ type PropsType = {
 export const Todolist: React.FC<PropsType> = React.memo(({todoLists}) => {
 
     let tasks = useSelector<AppRootStateType, Array<TaskType>>(state => state.tasks[todoLists.id])
-
     const dispatch = useDispatch<Dispatch>()
 
     if (todoLists.filter === 'active') {

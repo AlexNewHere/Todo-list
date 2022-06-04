@@ -27,7 +27,6 @@ export const Task = React.memo ( ({task, todoListsID}: TaskPropsType) => {
         dispatch(ChangeTaskStatusAC(todoListsID, task.id, e.currentTarget.checked))
     }, [ task.id, todoListsID ])
 
-
     return <Paper elevation={2}
                   sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '7px',
                       ':hover': {cursor: 'pointer', backgroundColor: 'rgba(205,250,198,0.65)'}}}

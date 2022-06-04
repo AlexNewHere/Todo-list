@@ -11,13 +11,11 @@ import {AppRootStateType} from './store/state/store';
 import {Dispatch} from 'redux';
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
-
 export type TasksToDoType = {
     id: string
     title: string
     filter: FilterValuesType
 }
-
 export type TaskStateType = {
     [key: string]: Array<TaskType>
 }
