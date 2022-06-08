@@ -32,19 +32,19 @@ export const Todolist: React.FC<PropsType> = React.memo(({todoLists}) => {
         tasks = tasks.filter(t => t.isDone);
     }
 
-    const onAllClickHandler = () => dispatch(ChangeFilterAC(todoLists.id, 'all'));
-    const onActiveClickHandler = () => dispatch(ChangeFilterAC(todoLists.id, 'active'));
-    const onCompletedClickHandler = () => dispatch(ChangeFilterAC(todoLists.id, 'completed'));
+    const onAllClickHandler = useCallback(() => dispatch(ChangeFilterAC(todoLists.id, 'all')), []);
+    const onActiveClickHandler = useCallback(() => dispatch(ChangeFilterAC(todoLists.id, 'active')), []);
+    const onCompletedClickHandler = useCallback(() => dispatch(ChangeFilterAC(todoLists.id, 'completed')), []);
 
     const removeTodolistHandler = useCallback(() => {
         dispatch(RemoveTodolistAC(todoLists.id));
-    }, [])
+    }, [todoLists.id])
     const addTaskHandler = useCallback((title: string) => {
         dispatch(AddTaskAC(todoLists.id, title));
-    }, [])
+    }, [todoLists.id])
     const changeTodoTitle = useCallback((newTitle: string) => {
         dispatch(ChangeTitleAC(todoLists.id, newTitle));
-    }, [todoLists.title])
+    }, [todoLists.id, todoLists.title])
 
     return (
         <div>

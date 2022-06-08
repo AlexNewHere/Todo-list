@@ -17,15 +17,15 @@ export const Task = React.memo ( ({task, todoListsID}: TaskPropsType) => {
 
     const dispatch = useDispatch<Dispatch>()
 
-    const editTaskHandler = useCallback(() => {
-        dispatch(ChangeTaskTitleAC(todoListsID, task.id, task.title));
-    }, [])
+    const editTaskHandler = useCallback((newTitle: string) => {
+        dispatch(ChangeTaskTitleAC(todoListsID, task.id, newTitle));
+    }, [todoListsID, task.id])
     const removeTask = useCallback(() => {
         dispatch(RemoveTaskAC(todoListsID, task.id))
     }, [])
     const changeTaskStatus = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         dispatch(ChangeTaskStatusAC(todoListsID, task.id, e.currentTarget.checked))
-    }, [ task.id, todoListsID ])
+    }, [ task.id, todoListsID])
 
     return <Paper elevation={2}
                   sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '7px',

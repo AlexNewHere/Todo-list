@@ -31,7 +31,6 @@ function AppWithRedux() {
     }, [])
 
     return (
-
         <div className="App">
             <AppBar position="static">
                 <Toolbar>

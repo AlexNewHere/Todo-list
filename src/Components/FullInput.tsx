@@ -7,7 +7,7 @@ type FullInputType = {
 }
 
 export const FullInput = React.memo((props: FullInputType) => {
-    console.log('FullInput');
+
 
         let [title, setTitle] = useState<string>('')
         let [error, setError] = useState<string | null>(null)
@@ -26,7 +26,9 @@ export const FullInput = React.memo((props: FullInputType) => {
         }
 
         const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-            setError(null);
+            if (error!==null){
+                setError(null);
+            }
             if (e.key === 'Enter') {
                 addTask();
             }
