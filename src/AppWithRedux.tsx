@@ -24,7 +24,6 @@ function AppWithRedux() {
 
     const todoLists = useSelector<AppRootStateType, Array<TasksToDoType>>(state => state.todoLists)
     const dispatch = useDispatch<Dispatch>()
-
     const addTodoList = useCallback ((title: string) => {
         const action = AddTodolistAC(title)
         dispatch(action)
