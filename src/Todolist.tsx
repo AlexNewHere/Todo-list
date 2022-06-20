@@ -6,16 +6,12 @@ import {Delete} from '@mui/icons-material';
 import {useDispatch, useSelector} from 'react-redux';
 import {Dispatch} from 'redux';
 import {AppRootStateType} from './store/state/store';
-import {TasksToDoType} from './AppWithRedux';
-import {ChangeFilterAC, ChangeTitleAC, RemoveTodolistAC} from './store/todolistsReducer';
+import {ChangeFilterAC, ChangeTitleAC, RemoveTodolistAC, TasksToDoType} from './store/todolistsReducer';
 import {AddTaskAC} from './store/tasksReducer';
 import {Task} from './Task';
+import {TaskStatuses, TaskType} from './api/tasksAPI';
 
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
+
 type PropsType = {
     todoLists: TasksToDoType
 }
@@ -26,10 +22,10 @@ export const Todolist: React.FC<PropsType> = React.memo(({todoLists}) => {
     const dispatch = useDispatch<Dispatch>()
 
     if (todoLists.filter === 'active') {
-        tasks = tasks.filter(t => !t.isDone);
+        tasks = tasks.filter(t => t.status===TaskStatuses.InProgress);
     }
     if (todoLists.filter === 'completed') {
-        tasks = tasks.filter(t => t.isDone);
+        tasks = tasks.filter(t => t.status===TaskStatuses.Completed);
     }
 
     const onAllClickHandler = useCallback(() => dispatch(ChangeFilterAC(todoLists.id, 'all')), []);

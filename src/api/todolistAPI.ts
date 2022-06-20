@@ -1,6 +1,6 @@
 import {instance} from './instanceAPI';
 
-type TodolistType = {
+export type TodolistType = {
     id: string
     addedDate: string
     order: number
