@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, {useEffect, useState} from 'react'
+import {todolistAPI} from '../../api/todolistAPI';
 
 export default {
     title: 'API'
@@ -18,9 +19,9 @@ const instance = axios.create({
 export const GetTodolists = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-       instance.get('todo-lists')
+        todolistAPI.getTodolist()
            .then(res=> {
-               setState(res.data)
+               setState(res.data[0])
            })
 
     }, [])
@@ -29,21 +30,7 @@ export const GetTodolists = () => {
 export const CreateTodolist = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        instance.post('todo-lists', {
-            title: 'Create'
-        })
-            .then(res=> {
-                setState(res.data)
-            })
-    }, [])
-
-    return <div>{JSON.stringify(state)}</div>
-}
-export const DeleteTodolist = () => {
-    const [state, setState] = useState<any>(null)
-    const todolistId = '2077d5eb-9978-492c-88eb-ee57c4ab3bde'
-    useEffect(() => {
-        instance.delete(`todo-lists/${todolistId}`)
+        todolistAPI.createTodolist('New post')
             .then(res=> {
                 setState(res.data)
             })
@@ -53,12 +40,22 @@ export const DeleteTodolist = () => {
 }
 export const UpdateTodolistTitle = () => {
     const [state, setState] = useState<any>(null)
-    const todolistId = 'bcedb343-64a7-48e4-bd99-a956f7f9ddc3'
+    useEffect(() => {
+        const todolistId = 'cc6048ed-6d79-4313-9a01-300c09df3285'
+        todolistAPI.updateTodolist(todolistId, 'change title')
+            .then(res=> {
+                setState(res.data)
+            })
+    }, [])
+
+    return <div>{JSON.stringify(state)}</div>
+}
+export const DeleteTodolist = () => {
+    const [state, setState] = useState<any>(null)
 
     useEffect(() => {
-        instance.put(`todo-lists/${todolistId}`, {
-            title: 'change title'
-        })
+        const todolistId = 'bcedb343-64a7-48e4-bd99-a956f7f9ddc3'
+        todolistAPI.deleteTodolist(todolistId)
             .then(res=> {
                 setState(res.data)
             })
