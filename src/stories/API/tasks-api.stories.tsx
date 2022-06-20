@@ -1,9 +1,9 @@
 import axios from 'axios'
 import React, {useEffect, useState} from 'react'
-import {todolistAPI} from '../../api/todolistAPI';
+import {taskAPI} from '../../api/tasksAPI';
 
 export default {
-    title: 'API'
+    title: 'API-tasks'
 }
 
 const instance = axios.create({
@@ -16,32 +16,23 @@ const instance = axios.create({
 })
 
 
-export const GetTodolists = () => {
+export const GetTasks = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        todolistAPI.getTodolist()
+        const todolistId ='9adf40fe-e734-4532-9149-1017d6660c2f'
+        taskAPI.getTasks(todolistId)
            .then(res=> {
-               setState(res.data[0])
+               setState(res.data)
            })
 
     }, [])
     return <div>{JSON.stringify(state)}</div>
 }
-export const CreateTodolist = () => {
-    const [state, setState] = useState<any>(null)
-    // useEffect(() => {
-    //     todolistAPI.createTodolist('New post')
-    //         .then(res=> {
-    //             setState(res.data)
-    //         })
-    // }, [])
-    return <div>{JSON.stringify(state)}</div>
-}
-export const UpdateTodolistTitle = () => {
+export const CreateTasks = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        const todolistId = 'cc6048ed-6d79-4313-9a01-300c09df3285'
-        todolistAPI.updateTodolist(todolistId, 'change title')
+        const todolistId ='9adf40fe-e734-4532-9149-1017d6660c2f'
+        taskAPI.createTasks(todolistId, 'Buy ice creme')
             .then(res=> {
                 setState(res.data)
             })
@@ -49,12 +40,26 @@ export const UpdateTodolistTitle = () => {
 
     return <div>{JSON.stringify(state)}</div>
 }
-export const DeleteTodolist = () => {
+export const UpdateTasksName = () => {
+    const [state, setState] = useState<any>(null)
+    useEffect(() => {
+        const todolistId ='9adf40fe-e734-4532-9149-1017d6660c2f'
+        const taskId = 'd2446ea4-ffc6-411c-8c54-00ffdb2c021d'
+        taskAPI.updateTasks(todolistId, taskId, 'Buy more ice creme')
+            .then(res=> {
+                setState(res.data)
+            })
+    }, [])
+
+    return <div>{JSON.stringify(state)}</div>
+}
+export const DeleteTasks = () => {
     const [state, setState] = useState<any>(null)
 
     useEffect(() => {
-        const todolistId = 'bcedb343-64a7-48e4-bd99-a956f7f9ddc3'
-        todolistAPI.deleteTodolist(todolistId)
+        const todolistId ='9adf40fe-e734-4532-9149-1017d6660c2f'
+        const taskId = 'd2446ea4-ffc6-411c-8c54-00ffdb2c021d'
+        taskAPI.deleteTasks(todolistId, taskId)
             .then(res=> {
                 setState(res.data)
             })
