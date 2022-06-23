@@ -28,7 +28,6 @@ export type TaskType = {
     title: string
 }
 
-
 type GetTasksType = {
     error: string | null
     totalCount: number
@@ -44,7 +43,6 @@ type UpdateTasksType = {
     startDate?: string | null
     deadline?: string | null
 }
-
 
 export type ResponseType<D = {}> = {
     resultCode: number

@@ -11,7 +11,6 @@ import {AddTaskAC} from './store/tasksReducer';
 import {Task} from './Task';
 import {TaskStatuses, TaskType} from './api/tasksAPI';
 
-
 type PropsType = {
     todoLists: TasksToDoType
 }
@@ -35,9 +34,11 @@ export const Todolist: React.FC<PropsType> = React.memo(({todoLists}) => {
     const removeTodolistHandler = useCallback(() => {
         dispatch(RemoveTodolistAC(todoLists.id));
     }, [todoLists.id])
+
     const addTaskHandler = useCallback((title: string) => {
         dispatch(AddTaskAC(todoLists.id, title));
     }, [todoLists.id])
+
     const changeTodoTitle = useCallback((newTitle: string) => {
         dispatch(ChangeTitleAC(todoLists.id, newTitle));
     }, [todoLists.id, todoLists.title])

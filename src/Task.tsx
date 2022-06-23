@@ -7,7 +7,6 @@ import {Dispatch} from 'redux';
 import {ChangeTaskStatusAC, ChangeTaskTitleAC, RemoveTaskAC} from './store/tasksReducer';
 import {TaskStatuses, TaskType} from './api/tasksAPI';
 
-
 type TaskPropsType = {
     task: TaskType
     todoListsID: string
@@ -20,9 +19,11 @@ export const Task = React.memo ( ({task, todoListsID}: TaskPropsType) => {
     const editTaskHandler = useCallback((newTitle: string) => {
         dispatch(ChangeTaskTitleAC(todoListsID, task.id, newTitle));
     }, [todoListsID, task.id])
+
     const removeTask = useCallback(() => {
         dispatch(RemoveTaskAC(todoListsID, task.id))
     }, [])
+
     const changeTaskStatus = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         const choice = e.currentTarget.checked? TaskStatuses.Completed : TaskStatuses.InProgress
         dispatch(ChangeTaskStatusAC(todoListsID, task.id, choice))
