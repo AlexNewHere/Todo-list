@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import './App.css';
 import {Todolist} from './Todolist';
 import {FullInput} from './Components/FullInput';
@@ -13,15 +13,23 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import {AddTodolistAC, TasksToDoType} from './store/todolistsReducer';
+import {
+    AddTodolistAC,
+    fetchTodolistsTC,
+    TasksToDoType
+} from './store/todolistsReducer';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from './store/state/store';
-import {Dispatch} from 'redux';
+import {AppRootStateType,} from './store/state/store';
 
 function AppWithRedux() {
 
     const todoLists = useSelector<AppRootStateType, Array<TasksToDoType>>(state => state.todoLists)
-    const dispatch = useDispatch<Dispatch>()
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+       dispatch(fetchTodolistsTC())
+    }, [])
+
     const addTodoList = useCallback((title: string) => {
         const action = AddTodolistAC(title)
         dispatch(action)

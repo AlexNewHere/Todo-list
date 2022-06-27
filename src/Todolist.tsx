@@ -1,13 +1,12 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {FullInput} from './Components/FullInput';
 import {EditableSpan} from './Components/EditableSapn';
 import {Button, IconButton} from '@mui/material';
 import {Delete} from '@mui/icons-material';
 import {useDispatch, useSelector} from 'react-redux';
-import {Dispatch} from 'redux';
 import {AppRootStateType} from './store/state/store';
 import {ChangeFilterAC, ChangeTitleAC, RemoveTodolistAC, TasksToDoType} from './store/todolistsReducer';
-import {AddTaskAC} from './store/tasksReducer';
+import {AddTaskAC, fetchTasksTC} from './store/tasksReducer';
 import {Task} from './Task';
 import {TaskStatuses, TaskType} from './api/tasksAPI';
 
@@ -18,7 +17,11 @@ type PropsType = {
 export const Todolist: React.FC<PropsType> = React.memo(({todoLists}) => {
 
     let tasks = useSelector<AppRootStateType, Array<TaskType>>(state => state.tasks[todoLists.id])
-    const dispatch = useDispatch<Dispatch>()
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(fetchTasksTC(todoLists.id))
+    }, [])
 
     if (todoLists.filter === 'active') {
         tasks = tasks.filter(t => t.status===TaskStatuses.InProgress);
