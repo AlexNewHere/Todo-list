@@ -34,8 +34,8 @@ type GetTasksType = {
     items: Array<TaskType>
 }
 
-type UpdateTasksType = {
-    title: string
+export type UpdateTasksType = {
+    title?: string
     description?: string | null
     completed?: boolean
     status?: number

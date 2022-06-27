@@ -4,9 +4,14 @@ import {EditableSpan} from './Components/EditableSapn';
 import {Button, IconButton} from '@mui/material';
 import {Delete} from '@mui/icons-material';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from './store/state/store';
-import {ChangeFilterAC, ChangeTitleAC, RemoveTodolistAC, TasksToDoType} from './store/todolistsReducer';
-import {AddTaskAC, fetchTasksTC} from './store/tasksReducer';
+import {AppDispatch, AppRootStateType} from './store/state/store';
+import {
+    ChangeFilterAC,
+    changeTodolistsTC,
+    deleteTodolistsTC,
+    TasksToDoType
+} from './store/todolistsReducer';
+import {createTasksTC, fetchTasksTC} from './store/tasksReducer';
 import {Task} from './Task';
 import {TaskStatuses, TaskType} from './api/tasksAPI';
 
@@ -17,11 +22,11 @@ type PropsType = {
 export const Todolist: React.FC<PropsType> = React.memo(({todoLists}) => {
 
     let tasks = useSelector<AppRootStateType, Array<TaskType>>(state => state.tasks[todoLists.id])
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
 
     useEffect(()=>{
         dispatch(fetchTasksTC(todoLists.id))
-    }, [])
+    }, [todoLists, dispatch ])
 
     if (todoLists.filter === 'active') {
         tasks = tasks.filter(t => t.status===TaskStatuses.InProgress);
@@ -35,15 +40,15 @@ export const Todolist: React.FC<PropsType> = React.memo(({todoLists}) => {
     const onCompletedClickHandler = useCallback(() => dispatch(ChangeFilterAC(todoLists.id, 'completed')), []);
 
     const removeTodolistHandler = useCallback(() => {
-        dispatch(RemoveTodolistAC(todoLists.id));
+        dispatch(deleteTodolistsTC(todoLists.id));
     }, [todoLists.id])
 
     const addTaskHandler = useCallback((title: string) => {
-        dispatch(AddTaskAC(todoLists.id, title));
+        dispatch(createTasksTC(todoLists.id, title));
     }, [todoLists.id])
 
     const changeTodoTitle = useCallback((newTitle: string) => {
-        dispatch(ChangeTitleAC(todoLists.id, newTitle));
+        dispatch(changeTodolistsTC(todoLists.id, newTitle));
     }, [todoLists.id, todoLists.title])
 
     return (

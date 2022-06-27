@@ -14,25 +14,27 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import {
-    AddTodolistAC,
+    createTodolistsTC,
     fetchTodolistsTC,
     TasksToDoType
 } from './store/todolistsReducer';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType,} from './store/state/store';
+import {
+    AppDispatch,
+    AppRootStateType,
+} from './store/state/store';
 
 function AppWithRedux() {
 
     const todoLists = useSelector<AppRootStateType, Array<TasksToDoType>>(state => state.todoLists)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
 
     useEffect(()=>{
        dispatch(fetchTodolistsTC())
     }, [])
 
     const addTodoList = useCallback((title: string) => {
-        const action = AddTodolistAC(title)
-        dispatch(action)
+        dispatch(createTodolistsTC(title))
     }, [])
 
     return (
