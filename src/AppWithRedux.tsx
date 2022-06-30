@@ -31,11 +31,11 @@ function AppWithRedux() {
 
     useEffect(()=>{
        dispatch(fetchTodolistsTC())
-    }, [])
+    }, [dispatch])
 
     const addTodoList = useCallback((title: string) => {
         dispatch(createTodolistsTC(title))
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="App">

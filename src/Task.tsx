@@ -18,16 +18,16 @@ export const Task = React.memo(({task, todoListsID}: TaskPropsType) => {
 
     const editTaskHandler = useCallback((newTitle: string) => {
         dispatch(changeTasksTC(todoListsID, task.id, {title: newTitle}));
-    }, [todoListsID, task.id])
+    }, [todoListsID, task.id, dispatch])
 
     const removeTask = useCallback(() => {
         dispatch(deleteTasksTC(todoListsID, task.id))
-    }, [])
+    }, [dispatch, todoListsID, task.id])
 
     const changeTaskStatus = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         const choice = e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.InProgress
         dispatch(changeTasksTC(todoListsID, task.id, {status: choice}))
-    }, [task.id, todoListsID])
+    }, [task.id, todoListsID, dispatch])
 
     return <Paper elevation={2}
                   sx={{

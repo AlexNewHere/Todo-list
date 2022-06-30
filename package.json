@@ -1,6 +1,7 @@
 {
   "name": "it-incubator-todolist-ts",
   "version": "0.1.0",
+  "homepage": "https://alexnewhere.github.io/todo-list/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
@@ -19,6 +20,7 @@
     "@types/react-redux": "^7.1.24",
     "@types/uuid": "^8.3.4",
     "axios": "^0.27.2",
+    "gh-pages": "^4.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-redux": "^8.0.2",
@@ -31,7 +33,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeply": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app",
