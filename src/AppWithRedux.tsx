@@ -19,18 +19,15 @@ import {
     TasksToDoType
 } from './store/todolistsReducer';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-    AppDispatch,
-    AppRootStateType,
-} from './store/state/store';
+import {AppDispatch, AppRootStateType} from './store/state/store';
 
 function AppWithRedux() {
 
     const todoLists = useSelector<AppRootStateType, Array<TasksToDoType>>(state => state.todoLists)
     const dispatch = useDispatch<AppDispatch>()
 
-    useEffect(()=>{
-       dispatch(fetchTodolistsTC())
+    useEffect(() => {
+        dispatch(fetchTodolistsTC())
     }, [dispatch])
 
     const addTodoList = useCallback((title: string) => {
