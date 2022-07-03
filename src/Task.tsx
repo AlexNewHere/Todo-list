@@ -26,7 +26,7 @@ export const Task = React.memo(({task, todoListsID}: TaskPropsType) => {
 
     const changeTaskStatus = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         const choice = e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.InProgress
-        dispatch(changeTasksTC(todoListsID, task.id, {status: choice}))
+        dispatch(changeTasksTC(todoListsID, task.id, {...task, status: choice}))
     }, [task.id, todoListsID, dispatch])
 
     return <Paper elevation={2}

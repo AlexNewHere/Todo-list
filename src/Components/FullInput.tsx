@@ -4,6 +4,7 @@ import {Add} from '@mui/icons-material';
 
 type FullInputType = {
     callback: (title: string) => void
+    disabled?: boolean
 }
 
 export const FullInput = React.memo((props: FullInputType) => {
@@ -26,7 +27,7 @@ export const FullInput = React.memo((props: FullInputType) => {
         }
 
         const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-            if (error!==null){
+            if (error !== null) {
                 setError(null);
             }
             if (e.key === 'Enter') {
@@ -47,7 +48,11 @@ export const FullInput = React.memo((props: FullInputType) => {
                     onKeyPress={onKeyPressHandler}
                     error={!!error}
                 />
-                <Button variant={'contained'} style={{minWidth: '25px', height: '35px'}} onClick={addTask}><Add/></Button>
+                <Button variant={'contained'} style={{minWidth: '25px', height: '35px'}}
+                        onClick={addTask}
+                        disabled={props.disabled}>
+                    <Add/>
+                </Button>
             </div>
         );
     }

@@ -26,7 +26,7 @@ export const Todolist: React.FC<PropsType> = React.memo(({todoLists}) => {
 
     useEffect(()=>{
         dispatch(fetchTasksTC(todoLists.id))
-    }, [todoLists, dispatch ])
+    }, [todoLists,dispatch])
 
     if (todoLists.filter === 'active') {
         tasks = tasks.filter(t => t.status===TaskStatuses.InProgress);
@@ -55,10 +55,10 @@ export const Todolist: React.FC<PropsType> = React.memo(({todoLists}) => {
         <div>
             <h3>
                 <EditableSpan title={todoLists.title} callback={changeTodoTitle}/>
-                <IconButton onClick={removeTodolistHandler}><Delete/></IconButton>
+                <IconButton onClick={removeTodolistHandler} disabled={todoLists.entityStatus==='loading'}><Delete/></IconButton>
             </h3>
             <div>
-                <FullInput callback={addTaskHandler}/>
+                <FullInput callback={addTaskHandler} disabled={todoLists.entityStatus==='loading'}/>
             </div>
             <div>
                 <Button

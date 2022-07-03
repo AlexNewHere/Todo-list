@@ -47,6 +47,7 @@ export type UpdateTasksType = {
 export type ResponseType<D = {}> = {
     resultCode: number
     fieldsErrors: Array<string>
+    messages: Array<string>
     data: D
 }
 
