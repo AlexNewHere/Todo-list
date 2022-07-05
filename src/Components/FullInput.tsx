@@ -9,7 +9,6 @@ type FullInputType = {
 
 export const FullInput = React.memo((props: FullInputType) => {
 
-
         let [title, setTitle] = useState<string>('')
         let [error, setError] = useState<string | null>(null)
 
@@ -34,7 +33,6 @@ export const FullInput = React.memo((props: FullInputType) => {
                 addTask();
             }
         }
-
         return (
             <div>
                 <TextField
