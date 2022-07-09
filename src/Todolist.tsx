@@ -29,7 +29,7 @@ export const Todolist: React.FC<PropsType> = React.memo(({todoLists}) => {
     }, [todoLists,dispatch])
 
     if (todoLists.filter === 'active') {
-        tasks = tasks.filter(t => t.status===TaskStatuses.InProgress);
+        tasks = tasks.filter(t => t.status===TaskStatuses.New);
     }
     if (todoLists.filter === 'completed') {
         tasks = tasks.filter(t => t.status===TaskStatuses.Completed);

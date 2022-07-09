@@ -1,6 +1,6 @@
 import { setAppErrorAC, setAppStatusAC, StatusACType } from '../store/appReducer';
 import { Dispatch } from 'redux';
-import { ResponseType } from '../api/tasksAPI';
+import { ResponseType } from '../api/instanceAPI';
 
 export const handleServerAppError = <T>(data: ResponseType<T>, dispatch: ErrorUtilsDispatchType) => {
     if (data.messages.length) {

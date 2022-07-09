@@ -3,15 +3,9 @@ import './App.css';
 import {Todolist} from './Todolist';
 import {FullInput} from './Components/FullInput';
 import {
-    AppBar,
-    Button,
     Grid,
-    IconButton, LinearProgress,
     Paper,
-    Toolbar,
-    Typography
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import {
     createTodolistsTC,
@@ -20,16 +14,18 @@ import {
 } from './store/todolistsReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, AppRootStateType} from './store/state/store';
-import {RequestStatusType} from './store/appReducer';
-import {ErrorSnackbar} from './Components/ErrorSnackbar';
+import {Navigate} from 'react-router-dom';
 
 function AppWithRedux() {
 
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
     const todoLists = useSelector<AppRootStateType, Array<TasksToDoType>>(state => state.todoLists)
-    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
     const dispatch = useDispatch<AppDispatch>()
 
     useEffect(() => {
+        if (!isLoggedIn) {
+            return
+        }
         dispatch(fetchTodolistsTC())
     }, [dispatch])
 
@@ -37,27 +33,12 @@ function AppWithRedux() {
         dispatch(createTodolistsTC(title))
     }, [dispatch])
 
+    if (!isLoggedIn) {
+        return <Navigate to={'/login'}/>
+    }
+
     return (
         <div className="App">
-            <ErrorSnackbar/>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{mr: 2}}
-                    >
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-                        News
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-            { status === 'loading' &&  <LinearProgress color={'secondary'}/>}
             <Container fixed>
                 <Grid container style={{padding: '15px'}}>
                     <FullInput callback={addTodoList}/>

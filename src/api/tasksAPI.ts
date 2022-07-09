@@ -1,4 +1,4 @@
-import {instance} from './instanceAPI';
+import {instance, ResponseType} from './instanceAPI';
 
 export enum TaskStatuses {
     New = 0,
@@ -42,13 +42,6 @@ export type UpdateTasksType = {
     priority?: number
     startDate?: string | null
     deadline?: string | null
-}
-
-export type ResponseType<D = {}> = {
-    resultCode: number
-    fieldsErrors: Array<string>
-    messages: Array<string>
-    data: D
 }
 
 export const taskAPI = {

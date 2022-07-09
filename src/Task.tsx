@@ -25,7 +25,8 @@ export const Task = React.memo(({task, todoListsID}: TaskPropsType) => {
     }, [dispatch, todoListsID, task.id])
 
     const changeTaskStatus = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        const choice = e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.InProgress
+        const choice = e.currentTarget.checked ? TaskStatuses.Completed : TaskStatuses.New
+        console.log(choice)
         dispatch(changeTasksTC(todoListsID, task.id, {...task, status: choice}))
     }, [task.id, todoListsID, dispatch])
 
