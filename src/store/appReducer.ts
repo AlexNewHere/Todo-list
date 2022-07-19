@@ -18,7 +18,6 @@ export type StatusACType =
     | ReturnType<typeof setAppErrorAC>
     | ReturnType<typeof setIsInitializedAC>
 
-
 export const appReducer = (state: InitialStateLoadingType = initialState, action: StatusACType): InitialStateLoadingType => {
     switch (action.type) {
         case 'APP/SET-STATUS':
