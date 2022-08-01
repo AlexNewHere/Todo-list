@@ -50,12 +50,10 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) => {
 }
 
 export const fetchTasksTC = (todolistId: string): AppThunk => async dispatch => {
-    dispatch(setAppStatusAC('loading'))
     try {
         const res = await taskAPI.getTasks(todolistId)
         let tasks = res.data.items
         dispatch(setTasksAC(tasks, todolistId))
-        dispatch(setAppStatusAC('succeeded'))
     } catch (error) {
         let msg = (error as Error)
         handleServerNetworkError(msg, dispatch)
