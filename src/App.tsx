@@ -4,7 +4,7 @@ import {Navigate, Route, Routes} from 'react-router-dom';
 import AppWithRedux from './AppWithRedux';
 import {Login} from './Components/Login';
 import Container from '@mui/material/Container';
-import {CircularProgress} from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, AppRootStateType} from './store/state/store';
 import {initializeAppTC} from './store/appReducer';

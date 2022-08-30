@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import {FullInput} from './Components/FullInput';
 import {EditableSpan} from './Components/EditableSapn';
 import {Button, IconButton} from '@mui/material';
-import {Delete} from '@mui/icons-material';
+import Delete from '@mui/icons-material/Delete';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, AppRootStateType} from './store/state/store';
 import {

@@ -2,10 +2,8 @@ import React, {useCallback, useEffect} from 'react';
 import './App.css';
 import {Todolist} from './Todolist';
 import {FullInput} from './Components/FullInput';
-import {
-    Grid,
-    Paper,
-} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import {
     createTodolistsTC,
